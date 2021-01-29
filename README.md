@@ -1,6 +1,6 @@
 # GoogleRestAPIWrapper
 Google Rest API Wrapper for C#
-Currently only supports Google's `Cloud Translation API`, just a template for other developers to adopt to their projects.
+Currently only supports Google's `Cloud Translation API`, just a template for other developers to adopt to their projects. Example projects is included.
 
 ### How it works:  
 When logging into the client it generates a `JWT` for authenticating to Google API which gives you an `access token` to access the different scopes of the Google API. All API requests are done through POST and GET requests to the REST API and outputs the results as a Json format which the information can then be extracted for application use.  
@@ -47,7 +47,7 @@ LoginCredential credential = new LoginCredential
 ```
 
 
-Before you can make any built-in, custom POST, custom GET requests you have to login (using the credentials similar to above) to get your access token. If you logged in successfully the `AccessToken` string should not be empty. Keep in mind access token expires every 60 minutes and you will have to request a new one when it expires, if you only use the built in requests made for the client you don't have to worry about this since a new access token will be requested when the previous token expires automatically when calling on the request. If you are using your own custom requests you have to keep track of this yourself by checking if `GoogleClient.ExpireTick` is less than the current time.
+Before you can make any built-in, custom POST, custom GET requests you have to login (using the credentials similar to above) to get your access token. If you logged in successfully the `AccessToken` string should not be empty. Keep in mind access token expires every 60 minutes and you will have to request a new one when it expires, if you only use the built in requests made for the client you don't have to worry about this since a new access token will be requested when the previous token expires automatically when calling on the request. If you are using your own custom requests you have to call `GoogleClient.CheckValidClient()` it renews your access token if it's expired and returns false if renewing the access token was unsucessful.
 ```cs
 await GoogleClient.LoginAsync(credential);
 string accessToken = GoogleClient.AccessToken;
@@ -62,4 +62,4 @@ TranslatedTextResponse textResponse = await GoogleClient.TranslateTextAsync("こ
 ```
 
 
-To make your own custom request calls use `GoogleClient.Client` to make your own POST and GET requests as long as it's in the same Google API scope as your credential scope. Don't worry about `Authorization: Bearer` headers as it's already applied to the client when you logged on.
+To make your own custom request calls use `GoogleClient.Client` to make your own POST and GET requests as long as it's in the same Google API scope as your credential scope. Don't worry about `Authorization: Bearer` headers as it's already applied to the client when you logged on. Be sure to call `GoogleClient.CheckValidClient()` on your custom requests to ensure the access token has not expired and also attempts to renew it if it did expire.
