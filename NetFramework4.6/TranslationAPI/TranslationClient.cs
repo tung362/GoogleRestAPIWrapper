@@ -111,7 +111,7 @@ namespace TranslationAPI
         /// <summary>
         /// Checks to see if client has logged in
         /// </summary>
-        async Task<bool> CheckValidClient()
+        public async Task<bool> CheckValidClient()
         {
             DateTime utc0 = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             DateTime issueTime = DateTime.Now.ToUniversalTime();
