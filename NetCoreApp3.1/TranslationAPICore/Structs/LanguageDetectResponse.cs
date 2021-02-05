@@ -34,6 +34,6 @@ namespace TranslationAPI.Structs
         /// Detected language confidence
         /// </summary>
         [JsonProperty("confidence")]
-        public int Confidence;
+        public double Confidence;
     }
 }
