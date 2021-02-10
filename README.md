@@ -1,5 +1,5 @@
 # GoogleRestAPIWrapper
-Google Rest API Wrapper for C#
+Google Rest API Wrapper for C#  
 Currently only supports Google's `Cloud Translation API`, just a template for other developers to adopt to their projects. Example projects is included.
 
 ### How it works:  
@@ -18,7 +18,7 @@ Though the .dll were built for the specified version mentioned above, it might w
 
 
 ### Usage:  
-To start you need to add these namespaces to your porject
+To start you need to add these namespaces to your project
 ```cs
 using TranslationAPI;
 using TranslationAPI.Structs;
